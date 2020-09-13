@@ -3,10 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import { URLs } from "./constants/appConstants";
+
+
+const gitHubUser = new ApolloClient({
+  uri: URLs.GRAPHQL,
+  request: async operation => {
+    operation.setContext({
+      headers: {        
+        authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`        
+      }
+    });
+  }
+});
 
 ReactDOM.render(
   <React.StrictMode>
+    <ApolloProvider client={gitHubUser}>
+    
     <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
