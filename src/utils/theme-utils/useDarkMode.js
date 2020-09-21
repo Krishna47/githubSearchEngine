@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
+import { THEME } from "../../constants/appConstants";
+
+/**
+ * Custom hook to store/update theme preference 
+ */
 export const useDarkMode = () => {
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState(THEME.LIGHT);
     const [mountedComponent, setMountedComponent] = useState(false);
 
     const setMode = mode => {
-        window.localStorage.setItem('theme', mode)
+        window.localStorage.setItem(THEME.LOCAL_STORAGE_KEY, mode)
         setTheme(mode)
     };
 
     const themeToggler = () => {
-        theme === 'light' ? setMode('dark') : setMode('light')
+        theme === THEME.LIGHT ? setMode(THEME.DARK) : setMode(THEME.LIGHT)
     };
 
     useEffect(() => {
-        const localTheme = window.localStorage.getItem('theme');
+        const localTheme = window.localStorage.getItem(THEME.LOCAL_STORAGE_KEY);
         localTheme && setTheme(localTheme)
         setMountedComponent(true)
     }, []);

@@ -3,8 +3,8 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    font-family: 'Maven Pro', sans-serif;
-    transition: all 0.50s linear;
+    font-family: 'Maven Pro', sans-serif;    
+        transition: all 0.50s linear;
   }
  
  a{
@@ -23,5 +23,6 @@ color: ${({ theme }) => theme.linkHoverColor};
   }
   .repoResults table tr:hover{
       color:  ${({ theme }) => theme.tableColor};
+      background: ${({ theme }) => theme.tableHover};
   }
   `

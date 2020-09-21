@@ -8,3 +8,9 @@ export const MESSAGES = {
 export const URLs = {
   GRAPHQL: 'https://api.github.com/graphql'
 }
+
+export const THEME = {
+  LIGHT: 'light',
+  DARK: 'dark',
+  LOCAL_STORAGE_KEY: 'GitHubSETheme'
+}

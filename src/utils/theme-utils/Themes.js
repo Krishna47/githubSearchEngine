@@ -3,7 +3,8 @@ export const lightTheme = {
     text: '#363537',
     toggleBorder: '#FFF',
     background: '#363537',
-    tableColor:'#212529'   
+    tableColor:'#212529',
+    tableHover:'#00000013'   
     
 }
 export const darkTheme = {
@@ -14,5 +15,6 @@ export const darkTheme = {
     tableColor: '#fff',
     wheatColor: '#f5deb3',
     linkColor: '#66b0ff',
-    linkHoverColor:'#9eccff'
+    linkHoverColor:'#9eccff',
+    tableHover: '#0000006e'
 }
