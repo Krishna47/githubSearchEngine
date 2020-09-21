@@ -47,13 +47,14 @@ Multi theme mode is developed leveraging *styled-components* package and react-h
 #### Graph QL
 GitHub API v4 exposes its services in GraphQL. Apollo client is the GraphQL client with integrations for popular JavaScript libraries. It can be used to pull the data from a GraphQL server. To consume these services, the following packages were used. 
 * **apollo-boost**: Apollo Boost is a zero-config way to start using Apollo Client. 
-* **react-apollo**: React Apollo allows you to fetch data from your GraphQL server and build complex and reactive UIs using the React framework. 
+* **@apollo/client**: Allows to fetch data from your GraphQL server and build complex and reactive UIs using the React framework. 
 * **grpahql**: The JavaScript reference implementation for GraphQL, dependency on other GraphQL libraries.
 * **graphql-tag**: GrpahQL queries can be written straightforwardly using this package.
 
-*Jest* and *apollo-mocked-provider* were used to write test cases.
+* *Jest* ,*enzyme* were used to write test cases for regular react components
+* *@apollo/client/testing* was used to mock the GraphQL API and write the test cases 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
