@@ -1,7 +1,10 @@
 
 import React from 'react'
-import RepoDisplay from "./RepoDisplay";
+import PropTypes from 'prop-types'
+import RepoDisplay from "../searchPage/resultsPanel/RepoDisplay";
 import LoadingIndicator from "./LoadingIndicator";
+import { USR_REPO_SEARCH_QUERY } from "../../constants/grpahQlQuerys";
+import { useQuery } from '@apollo/client';
 import ErrorHandler from "./ErrorHandler";
 import { MESSAGES } from "../../constants/appConstants";
 import "./graphQl.scss";
@@ -13,9 +16,13 @@ import "./graphQl.scss";
  * @param {*} props.data: contains the actual response we are interested in.
  *  @param {*} props.error: contains information of network Error or Query Errors
  */
-const GraphqlReponseHandler = (props) => {
-    const { loading, data, error } = props.res;
-
+const GraphqlReponseHandler = ({ searchTxt}) => {
+    
+    //Use Apollo hooks to call fetch the repositories of the given user
+    const { loading, data, error } = useQuery(USR_REPO_SEARCH_QUERY, {
+        variables: { userId: searchTxt },
+    });
+    
     // Display loading Icon until the results are displayed
     if (loading) {
         return <LoadingIndicator />
@@ -27,7 +34,7 @@ const GraphqlReponseHandler = (props) => {
         const errMsg = isNetworkErr ? MESSAGES.GRAPHQL.NETWORK_ERR : MESSAGES.GRAPHQL.DATA_ERR;
         return <ErrorHandler errMsg={errMsg} />
     }
-
+    
     // Display data only after checking the error status. 
     if (data) {
         return <RepoDisplay
@@ -39,6 +46,11 @@ const GraphqlReponseHandler = (props) => {
 
     return '';
 
+}
+
+GraphqlReponseHandler.propTypes = {
+    //Username of the GitHub user, as per searchbar input 
+    searchTxt: PropTypes.string.isRequired
 }
 
 export default GraphqlReponseHandler;

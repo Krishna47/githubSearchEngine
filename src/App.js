@@ -6,12 +6,12 @@ import { useDarkMode } from "./utils/theme-utils/useDarkMode";
 import ThemeToggler from "./utils/theme-utils/ThemeToggler";
 import './app.scss';
 import * as Themes from "./utils/theme-utils/Themes";
-
+import { THEME } from "./constants/appConstants";
 const App = () => {
 
   const [theme, themeToggler, mountedComponent] = useDarkMode();
 
-  const themeMode = theme === 'light' ? Themes.lightTheme : Themes.darkTheme;
+  const themeMode = theme === THEME.LIGHT ? Themes.lightTheme : Themes.darkTheme;
 
   if (!mountedComponent) return <div />
   return (

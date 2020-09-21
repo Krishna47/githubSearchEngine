@@ -1,6 +1,7 @@
 import React from 'react'
-import ErrorHandler from "./ErrorHandler";
-import { MESSAGES } from "../../constants/appConstants";
+import PropTypes from 'prop-types'
+import ErrorHandler from "../../graphQl/ErrorHandler";
+import { MESSAGES } from "../../../constants/appConstants";
 
 /**
  * 
@@ -28,14 +29,14 @@ const RepoDisplay = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {repoList.map((repo,index) => {
+                    {repoList.map((repo, index) => {
                         return <tr key={repo.id}>
                             <th scope="row">{index + 1}</th>
                             <td className="repoName">{repo.name}</td>
                             <td className="repoDesc">{repo.description || 'N/A'}</td>
                             <td className="repoLink">
                                 <a href={repo.url} target='_blank' rel="noopener noreferrer">
-                                Link
+                                    Link
                                 </a>
                             </td>
                         </tr>
@@ -49,5 +50,15 @@ const RepoDisplay = (props) => {
     )
 }
 
+
+RepoDisplay.propTypes = {
+    repos: PropTypes.shape({
+        //number of repos of a user in Github
+        totalCount: PropTypes.number,
+
+        // Contains the repository information
+        nodes: PropTypes.array
+    })
+}
 
 export default RepoDisplay

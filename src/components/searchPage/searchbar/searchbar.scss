@@ -40,7 +40,8 @@
     right: 8px;
     width: 25px;
     cursor: pointer;
-    &:hover {
+    &:hover,&:focus {
+      outline: none;
       top: 7px;
       right: 7px;
       width: 26px;
