@@ -1,28 +1,37 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
+import Header from "../header/Header";
+import Searchbar from "../searchPage/searchbar/Searchbar";
 import SearchPage from "./SearchPage";
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import TestRenderer from 'react-test-renderer';
-import { Query } from 'react-apollo';
-afterEach(cleanup);
+import GraphqlReponseHandler from "../graphQl/GraphqlReponseHandler";
+import { act } from 'react-test-renderer';
 
-it("Renders Searchpage without issues",()=>{
-    const div = document.createElement("div");
-    ReactDOM.render(<SearchPage></SearchPage>,div);
-});
 
-it("Search Text should be empty by default",()=>{
-    const { getByTestId } = render(<SearchPage></SearchPage>);
-    expect(getByTestId('searchField')).toHaveTextContent("");    
+it('should render without issues', () => {
+    const wrapper = shallow(<SearchPage />);    
+    expect(wrapper.exists()).toBe(true);    
 });
 
 
-it("Search Text should be empty after clicking clear Icon", () => {
-    const { getByTestId } = render(<SearchPage></SearchPage>);
-    fireEvent.click(getByTestId('clearIcon'));
-    expect(getByTestId('searchField')).toHaveTextContent("");
+it('should render Header and Searchbar by default without issues', () => {
+    const wrapper = shallow(<SearchPage />);
+
+    expect(wrapper.find(GraphqlReponseHandler).exists()).toBe(false);
+    
+    expect(wrapper.find(Header).exists()).toBe(true);
+    expect(wrapper.find(Searchbar).exists()).toBe(true);
     
 });
 
 
-
+it('should render  GraphqlReponseHandler only when searchTxt is NOT empty',()=>{
+    const wrapper = shallow(<SearchPage />);
+    const setSearchTxt =wrapper.find(Searchbar).prop('setSearchTxt');
+    
+    act(()=>{
+        setSearchTxt('hookUpdated');
+    });
+    setSearchTxt('hookUpdated');
+    expect(wrapper.find(GraphqlReponseHandler).exists()).toBe(true);
+    expect(wrapper.find(GraphqlReponseHandler).prop('searchTxt')).toBe('hookUpdated');
+});
