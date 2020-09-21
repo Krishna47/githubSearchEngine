@@ -5,10 +5,10 @@ import Searchbar from "./Searchbar";
 
 
 it('should render without errors', () => {
-    const wrapper = shallow(<Searchbar />);
+    const wrapper = shallow(<Searchbar placeholder=''/>);
     const wrapper_withProps = shallow(<Searchbar
         searchTxt=''
-        setSearchTxt=''
+        setSearchTxt={()=>{}}
         defaultSearchTxt=''
         placeholder=''
     />);
@@ -37,6 +37,7 @@ describe(` testing 'setSearchTxt' hook `, () => {
         setSearchTxt = jest.fn();
         wrapper = shallow(<Searchbar
             searchTxt=''
+            placeholder=''
             setSearchTxt={setSearchTxt}
             defaultSearchTxt=''
         />);

@@ -55,7 +55,7 @@ Searchbar.propTypes = {
     //username of the Github user
     searchTxt: PropTypes.string,
     //hook to update the state of searchTxt
-    setSearchTxt: PropTypes.func.isRequired,
+    setSearchTxt: PropTypes.func,
     //default text to fetch the results from Github, without user input
     defaultSearchTxt: PropTypes.string,
     //Message to be displayed inside searchbar

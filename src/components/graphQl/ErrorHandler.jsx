@@ -14,7 +14,7 @@ const ErrorHandler = ({ errMsg = DEFAULT_ERROR_MESSAGE }) => {
 }
 
 ErrorHandler.propTypes = {
-    errMsg: PropTypes.string.isRequired
+    errMsg: PropTypes.string
 }
 
 export default ErrorHandler
